@@ -10,13 +10,13 @@
           :state="row.state"
           @click="option(row)"
         >
-          <el-popover placement="top" width="160">
+          <el-popover placement="top" width="160" v-model="visible2">
             <p>这是一段内容这是一段内容确定删除吗？</p>
             <div style="text-align: right; margin: 0">
-              <el-button size="mini" type="text">取消</el-button>
-              <el-button type="primary" size="mini">确定</el-button>
+              <el-button size="mini" type="text" @click="visible2 = false">取消</el-button>
+              <el-button type="primary" size="mini" @click="visible2 = false">确定</el-button>
             </div>
-            <el-button slot="reference">删除</el-button>
+            <el-button style="padding:0" slot="reference">删除</el-button>
           </el-popover>
           <!-- {{row.state}} -->
         </div>
@@ -42,6 +42,7 @@ export default {
   name: "HelloWorld",
   data() {
     return {
+      visible2: false,
       list1: [],
       list2: [],
       state: ["0", "1", "2"],
