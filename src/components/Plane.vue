@@ -39,63 +39,63 @@
 
 <script>
 export default {
-  name: "HelloWorld",
-  data() {
+  name: 'HelloWorld',
+  data () {
     return {
       visible2: false,
       list1: [],
       list2: [],
-      state: ["0", "1", "2"],
-      row: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"],
-      line: ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"]
-    };
+      state: ['0', '1', '2'],
+      row: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'],
+      line: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']
+    }
   },
   computed: {
-    list: function() {
-      const lineTemp = [];
-      const rowTemp = [];
+    list: function () {
+      const lineTemp = []
+      // const rowTemp = []
       for (let l = 0; l < this.line.length; l++) {
         lineTemp.push({
           line: this.line[l],
           rowEl: []
-        });
+        })
         for (let r = 0; r < this.row.length; r++) {
-          const rowElement = { rowNo: this.row[r], state: this.state[0] };
-          lineTemp[l].rowEl.push(rowElement);
+          const rowElement = { rowNo: this.row[r], state: this.state[0] }
+          lineTemp[l].rowEl.push(rowElement)
         }
       }
-      return lineTemp;
+      return lineTemp
     }
   },
-  mounted() {
+  mounted () {
     this.$nextTick(() => {
-      this.init();
-    });
+      this.init()
+    })
   },
   methods: {
-    init() {
-      this.list1 = JSON.parse(JSON.stringify(this.list));
-      this.list2 = JSON.parse(JSON.stringify(this.list));
+    init () {
+      this.list1 = JSON.parse(JSON.stringify(this.list))
+      this.list2 = JSON.parse(JSON.stringify(this.list))
     },
-    option(item) {
+    option (item) {
       switch (item.state) {
-        case "0":
-          item.state = "1";
-          break;
-        case "1":
-          item.state = "2";
-          break;
-        case "2":
-          item.state = "0";
-          break;
+        case '0':
+          item.state = '1'
+          break
+        case '1':
+          item.state = '2'
+          break
+        case '2':
+          item.state = '0'
+          break
 
         default:
-          break;
+          break
       }
-      this.$forceUpdate();
+      this.$forceUpdate()
     }
   }
-};
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
