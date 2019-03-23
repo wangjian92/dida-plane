@@ -62,6 +62,9 @@
 </template>
 
 <script>
+// CommonJS
+const Swal = require('sweetalert2')
+
 export default {
   name: 'HelloWorld',
   data () {
@@ -102,7 +105,25 @@ export default {
       this.list2 = JSON.parse(JSON.stringify(this.list))
     },
     resetFun () {
-      this.init()
+      Swal.fire({
+        // title: '确认重置？',
+        text: '确认重置？',
+        // type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: '是',
+        cancelButtonText: '否'
+      }).then((result) => {
+        if (result.value) {
+          this.init()
+          Swal.fire(
+            '',
+            '已重置',
+            'success'
+          )
+        }
+      })
     },
     option (item) {
       switch (item.state) {
