@@ -32,7 +32,7 @@
         <div
           class="widgetBorder"
           v-for="(row, index) in item.rowEl"
-          :class="{'state-init':row.state=='0', 'state-doubt': row.state=='1', 'state-sure': row.state=='2'}"
+          :class="{'state-init':row.state=='', 'state-doubt': row.state=='O', 'state-sure': row.state=='X', 'state-down': row.state=='沉'}"
           :key="index"
           :state="row.state"
           @click="option(row)"
@@ -49,7 +49,7 @@
         <div
           class="widgetBorder"
           v-for="(row, index) in item.rowEl"
-          :class="{'state-init':row.state=='0', 'state-doubt': row.state=='1', 'state-sure': row.state=='2'}"
+          :class="{'state-init':row.state=='', 'state-doubt': row.state=='O', 'state-sure': row.state=='X', 'state-down': row.state=='沉'}"
           :key="index"
           :state="row.state"
           @click="option(row)"
@@ -72,7 +72,7 @@ export default {
       visible2: false,
       list1: [],
       list2: [],
-      state: ['0', '1', '2'],
+      state: ['', 'O', 'X', '沉'],
       row: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'],
       line: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']
     }
@@ -127,14 +127,17 @@ export default {
     },
     option (item) {
       switch (item.state) {
-        case '0':
-          item.state = '1'
+        case '':
+          item.state = 'O'
           break
-        case '1':
-          item.state = '2'
+        case 'O':
+          item.state = 'X'
           break
-        case '2':
-          item.state = '0'
+        case 'X':
+          item.state = '沉'
+          break
+        case '沉':
+          item.state = ''
           break
 
         default:
@@ -175,9 +178,17 @@ a {
   background-color: #a1a1a1;
 }
 .state-sure {
+  color: #ffffff;
   background-color: #67C23A;
 }
+.state-down {
+  color: #ffffff;
+  background-color: #F56C6C;
+}
 .widgetBorder {
-  width:10%;height:100%;border: 1px solid #409EFF;display:inline-block;
+  width:10%;
+  height:30px;
+  line-height: 30px;
+  border: 1px solid #409EFF;display:inline-block;
 }
 </style>
