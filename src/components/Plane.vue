@@ -32,7 +32,7 @@
         <div
           class="widgetBorder"
           v-for="(row, index) in item.rowEl"
-          :class="{'state-init':row.state=='', 'state-doubt': row.state=='O', 'state-sure': row.state=='X', 'state-down': row.state=='沉'}"
+          :class="{'state-init':row.state=='', 'state-doubt': row.state=='O', 'state-sure': row.state=='X', 'state-down': row.state=='沉', 'state-uncertain': row.state==' '}"
           :key="index"
           :state="row.state"
           @click="option(row)"
@@ -72,7 +72,7 @@ export default {
       visible2: false,
       list1: [],
       list2: [],
-      state: ['', 'O', 'X', '沉'],
+      state: ['', 'O', 'X', '沉', ' '],
       row: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'],
       line: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']
     }
@@ -137,6 +137,9 @@ export default {
           item.state = '沉'
           break
         case '沉':
+          item.state = ' '
+          break
+        case ' ':
           item.state = ''
           break
 
@@ -184,6 +187,9 @@ a {
 .state-down {
   color: #ffffff;
   background-color: #F56C6C;
+}
+.state-uncertain {
+  background-color: #b0f38e;
 }
 .widgetBorder {
   width:10%;
